@@ -13,6 +13,7 @@ bookForm.addEventListener("submit", function(e) {
     const fd = extractFormData(new FormData(bookForm));
     const book = new Book(fd.title, fd.author, fd.pages, fd.read);
     library.push(book);
+    newBook();
     dia.close();
 })
 
@@ -34,13 +35,27 @@ function Book (title, author, pages, read) {
 
 
 const main = document.querySelector(".main");
-library.forEach((book) => {
-    const tbody = document.querySelector("library");
+function newBook() {
+    const book = library[library.length-1];
+    console.log(book);
+    const tbody = document.querySelector(".library");
     const title = book.title;
     const author = book.author;
     const pages = book.pages;
     const read = book.read;
-    const entry = document.createElement("tr");
-    
-});
+    const entry = document.createElement("div");
+    const divTitle = document.createElement("p");
+    const divAuthor = document.createElement("p");
+    const divPages = document.createElement("p");
+    const divRead = document.createElement("p");
+    divTitle.innerText = title;
+    divAuthor.innerText = author;
+    divPages.innerText = pages;
+    divRead.innerText = read;
+    entry.appendChild(divTitle);
+    entry.appendChild(divAuthor);
+    entry.appendChild(divPages);
+    entry.appendChild(divRead);
+    tbody.appendChild(entry);
+};
 
