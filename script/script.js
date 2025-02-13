@@ -39,23 +39,34 @@ function newBook() {
     const book = library[library.length-1];
     console.log(book);
     const tbody = document.querySelector(".library");
-    const title = book.title;
-    const author = book.author;
-    const pages = book.pages;
+    const title = "Title " + book.title;
+    const author = "Author: " + book.author;
+    const pages = "Pages: " + book.pages;
     const read = book.read;
     const entry = document.createElement("div");
     const divTitle = document.createElement("p");
     const divAuthor = document.createElement("p");
     const divPages = document.createElement("p");
-    const divRead = document.createElement("p");
+    const divRead = document.createElement("input");
+    const divReadQ = document.createElement("div");
+    divReadQ.innerText = "Read? ";
+    divRead.setAttribute("type", "checkbox");
+    
     divTitle.innerText = title;
     divAuthor.innerText = author;
     divPages.innerText = pages;
-    divRead.innerText = read;
+    if (read == "on") {
+        divRead.checked = true;
+    } else {
+        divRead.checked = false;
+    }
+    divReadQ.appendChild(divRead);
     entry.appendChild(divTitle);
     entry.appendChild(divAuthor);
     entry.appendChild(divPages);
-    entry.appendChild(divRead);
+    entry.appendChild(divReadQ);
+    entry.classList.add("card");
     tbody.appendChild(entry);
+
 };
 
